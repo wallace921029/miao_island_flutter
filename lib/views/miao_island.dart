@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:miao_island_flutter/common/app_color.dart';
 import 'package:miao_island_flutter/components/miao_island_card.dart';
+import 'package:miao_island_flutter/components/publish_cat.dart';
 import 'package:miao_island_flutter/components/tags.dart';
 
 class MiaoIsland extends StatefulWidget {
@@ -36,7 +38,7 @@ class _MiaoIslandState extends State<MiaoIsland> {
                       items: <DropdownMenuItem>[
                         new DropdownMenuItem(child: new Text('母猫'), value: 0),
                         new DropdownMenuItem(child: new Text('公猫'), value: 1),
-                      ], 
+                      ],
                       value: sex,
                       hint: new Text('性别'),
                       onChanged: (value) {
@@ -52,9 +54,11 @@ class _MiaoIslandState extends State<MiaoIsland> {
                     padding: new EdgeInsets.only(left: 8, right: 8),
                     child: new DropdownButton(
                       items: <DropdownMenuItem>[
-                        new DropdownMenuItem(child: new Text('价格由低到高'), value: 0),
-                        new DropdownMenuItem(child: new Text('价格由高到低'), value: 1),
-                      ], 
+                        new DropdownMenuItem(
+                            child: new Text('价格由低到高'), value: 0),
+                        new DropdownMenuItem(
+                            child: new Text('价格由高到低'), value: 1),
+                      ],
                       value: sortByPrice,
                       hint: new Text('排序'),
                       onChanged: (value) {
@@ -70,11 +74,15 @@ class _MiaoIslandState extends State<MiaoIsland> {
                     padding: new EdgeInsets.only(left: 8, right: 8),
                     child: new DropdownButton(
                       items: <DropdownMenuItem>[
-                        new DropdownMenuItem(child: new Text('0~3个月'), value: 0),
-                        new DropdownMenuItem(child: new Text('3~12个月'), value: 1),
-                        new DropdownMenuItem(child: new Text('12~24个月'), value: 2),
-                        new DropdownMenuItem(child: new Text('24个月以上'), value: 3),
-                      ], 
+                        new DropdownMenuItem(
+                            child: new Text('0~3个月'), value: 0),
+                        new DropdownMenuItem(
+                            child: new Text('3~12个月'), value: 1),
+                        new DropdownMenuItem(
+                            child: new Text('12~24个月'), value: 2),
+                        new DropdownMenuItem(
+                            child: new Text('24个月以上'), value: 3),
+                      ],
                       value: ageArea,
                       hint: new Text('年龄'),
                       onChanged: (value) {
@@ -89,11 +97,23 @@ class _MiaoIslandState extends State<MiaoIsland> {
             ),
           ),
           new Tags(
-            category: ['全部', '美短', '英短', '加菲', '布偶', '暹罗', '折耳', '波斯', '蓝猫', '缅因', '司芬克斯', '狸花'],
-            handler: (List<String> list){
-              print(list);
-            }
-          ),
+              category: [
+                '全部',
+                '美短',
+                '英短',
+                '加菲',
+                '布偶',
+                '暹罗',
+                '折耳',
+                '波斯',
+                '蓝猫',
+                '缅因',
+                '司芬克斯',
+                '狸花'
+              ],
+              handler: (List<String> list) {
+                print(list);
+              }),
           new Divider(height: 0),
           new Expanded(
             child: new SingleChildScrollView(
@@ -115,6 +135,15 @@ class _MiaoIslandState extends State<MiaoIsland> {
             ),
           )
         ],
+      ),
+      floatingActionButton: new FloatingActionButton(
+        backgroundColor: AppColor.orange,
+        child: new Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(new MaterialPageRoute(
+              builder: (BuildContext context) => new PublishCat(),
+              fullscreenDialog: true));
+        },
       ),
     );
   }
